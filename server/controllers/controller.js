@@ -13,9 +13,9 @@ class Controller {
     static async register(req, res, next) {
         try {
             const { username, password } = req.body;
-            const check = await User.findOne({where:{username}})
-            if(check){
-                throw 'username sudah terdaftar'
+            const check = await User.findOne({ where: { username } });
+            if (check) {
+                throw "username sudah terdaftar";
             }
             await User.create({ username, password, role: "customer" });
             res.status(201).json(`Register berhasil`);
@@ -130,14 +130,13 @@ class Controller {
     }
 
     //Transaction
-
+    //
     static async getAllTransaction(req, res, next) {
         try {
-            
             const data = await Transaction.findAll({
-                where:{created_user:req.user.username}
-            })
-            res.status(200).json(data)
+                where: { created_user: req.user.username },
+            });
+            res.status(200).json(data);
         } catch (error) {
             next(error);
         }
@@ -145,33 +144,54 @@ class Controller {
 
     static async createTransaction(req, res, next) {
         try {
-
-            const checkTransaction = await Transaction.findAll()
-            const {product_varian_id,
+            const checkTransaction = await Transaction.findAll();
+            const {
+                product_varian_id,
                 product_id,
-                qty, created_user, updated_user} = req.body
-            const active = true
-            const transaction_no = checkTransaction.length+1
-            const checkProductVariant= await ProductVariant.findOne({where:{id:+product_varian_id}})
-            const total_amount = checkProductVariant.price*Number(qty)
-            const subtotal = checkProductVariant.price*Number(qty)
+                qty,
+                created_user,
+                updated_user,
+            } = req.body;
+            const active = true;
+            const transaction_no = checkTransaction.length + 1;
+            const checkProductVariant = await ProductVariant.findOne({
+                where: { id: +product_varian_id },
+            });
+            const total_amount = checkProductVariant.price * Number(qty);
+            const subtotal = checkProductVariant.price * Number(qty);
 
-            const newTransaction = await Transaction.create({transaction_no, total_amount, active, created_user, updated_user})
+            const newTransaction = await Transaction.create({
+                transaction_no,
+                total_amount,
+                active,
+                created_user,
+                updated_user,
+            });
 
-            const newTransactiondetail = await TransactionDetail.create({transaction_id:newTransaction.id, product_varian_id, price:checkProductVariant.price, qty, subtotal, active, created_user, updated_user})
-            
-            if(newTransactiondetail){
-                await ProductVariant.update({ qty: checkProductVariant.qty-qty },
+            const newTransactiondetail = await TransactionDetail.create({
+                transaction_id: newTransaction.id,
+                product_varian_id,
+                price: checkProductVariant.price,
+                qty,
+                subtotal,
+                active,
+                created_user,
+                updated_user,
+            });
+
+            if (newTransactiondetail) {
+                await ProductVariant.update(
+                    { qty: checkProductVariant.qty - qty },
                     {
                         where: { id: product_varian_id },
-                    })
-                
+                    }
+                );
             }
             console.log(req.user, ">>>>>>>>>");
-            res.status(201).json('transaksi berhasil')
+            res.status(201).json("transaksi berhasil");
         } catch (error) {
             console.log("errornih", error);
-            next(error)
+            next(error);
         }
     }
 }
