@@ -8,15 +8,12 @@ const AddVariantPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // State untuk menyimpan data produk yang akan ditambahkan
   const [productData, setProductData] = useState({
     name: "",
     price: 0,
     description: "",
-    // tambahkan properti lain sesuai kebutuhan
   });
 
-  // Handle perubahan input pada form
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProductData((prevData) => ({

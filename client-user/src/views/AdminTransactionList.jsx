@@ -18,14 +18,9 @@ const AdminTransactionList = () => {
 
   return (
     <div className="container mx-auto mt-8">
-      <h2 className="text-3xl font-bold mb-4">Daftar Produk</h2>
+      <h2 className="text-3xl font-bold mb-4">Daftar Transaksi</h2>
 
-      {/* Tombol Tambah Produk */}
-      <Link to="/admin/add" className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-        Tambah Produk
-      </Link>
 
-      {/* Tabel Daftar Produk */}
       <table className="mt-4 w-full border-collapse border border-gray-300">
         <thead>
           <tr className="bg-gray-200">
@@ -49,9 +44,7 @@ const AdminTransactionList = () => {
                 >
                   Edit
                 </Link>
-                {/* Tombol Hapus Produk */}
                 <button
-                //   onClick={() => handleDelete(product.id)}
                   className="text-red-500 hover:underline"
                 >
                   Hapus

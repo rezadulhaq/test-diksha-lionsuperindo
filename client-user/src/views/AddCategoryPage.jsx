@@ -8,15 +8,12 @@ const AddCategoryPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // State untuk menyimpan data produk yang akan ditambahkan
   const [productData, setProductData] = useState({
     name: "",
     price: 0,
     description: "",
-    // tambahkan properti lain sesuai kebutuhan
   });
 
-  // Handle perubahan input pada form
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProductData((prevData) => ({
@@ -25,14 +22,11 @@ const AddCategoryPage = () => {
     }));
   };
 
-  // Handle pengiriman form
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Dispatch aksi untuk menambahkan produk
     dispatch(addProduct(productData));
 
-    // Redirect ke halaman lain setelah berhasil menambahkan produk
     navigate("/");
   };
 
@@ -85,7 +79,6 @@ const AddCategoryPage = () => {
           />
         </div>
 
-        {/* Tambahkan properti lain sesuai kebutuhan */}
 
         <div className="text-center py-4">
           <button type="submit" className="btn btn-accent">

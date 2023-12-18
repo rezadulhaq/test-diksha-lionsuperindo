@@ -9,7 +9,6 @@ const AdminHomePage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch data transaksi saat komponen di-mount
     dispatch(fetchTransactions())
       .then(() => setLoading(false))
       .catch((error) => {
@@ -33,7 +32,6 @@ const AdminHomePage = () => {
               <th className="border border-gray-300 py-2 px-4">ID Transaksi</th>
               <th className="border border-gray-300 py-2 px-4">Tanggal</th>
               <th className="border border-gray-300 py-2 px-4">Total</th>
-              {/* ... tambahkan kolom lain sesuai kebutuhan ... */}
             </tr>
           </thead>
           

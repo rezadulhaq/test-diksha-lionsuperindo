@@ -21,7 +21,7 @@ const AdminProductList = () => {
       <h2 className="text-3xl font-bold mb-4">Daftar Produk</h2>
 
       {/* Tombol Tambah Produk */}
-      <Link to="/admin/add" className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+      <Link to="/add-product" className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
         Tambah Produk
       </Link>
 

@@ -7,6 +7,9 @@ import AddProductPage from "../views/AddProductPage";
 import Login from "../views/LoginPage";
 import { createBrowserHistory } from "history";
 import Register from "../views/RegisterPage";
+import AdminProductList from "../views/AdminProductList";
+import AdminCategoryList from "../views/AdminCategoryList";
+import AdminTransactionList from "../views/AdminTransactionList";
 const history = createBrowserHistory();
 
 const router = createBrowserRouter([
@@ -26,7 +29,6 @@ const router = createBrowserRouter([
             {
                 path: "product/:id",
                 element: <DetailPage />,
-                // Loader untuk "product/:id" hanya dijalankan jika role adalah "customer"
                 loader: () => {
                     const userRole = localStorage.getItem("role");
                     if (userRole !== "customer") {
@@ -38,7 +40,6 @@ const router = createBrowserRouter([
             {
                 path: "daftar-transaksi",
                 element: <TransactionListPage />,
-                // Loader untuk "daftar-transaksi" hanya dijalankan jika role adalah "customer"
                 loader: () => {
                     const userRole = localStorage.getItem("role");
                     if (userRole !== "customer") {
@@ -50,10 +51,42 @@ const router = createBrowserRouter([
             {
                 path: "add-product",
                 element: <AddProductPage />,
-                // Loader untuk "add-product" hanya dijalankan jika role adalah "admin"
                 loader: () => {
                     const userRole = localStorage.getItem("role");
-                    if (userRole !== "admin") {
+                    if (userRole !== "administrator") {
+                        return redirect("/");
+                    }
+                    return null;
+                },
+            },
+            {
+                path: "data-products",
+                element: <AdminProductList />,
+                loader: () => {
+                    const userRole = localStorage.getItem("role");
+                    if (userRole !== "administrator") {
+                        return redirect("/");
+                    }
+                    return null;
+                },
+            },
+            {
+                path: "data-categories",
+                element: <AdminCategoryList />,
+                loader: () => {
+                    const userRole = localStorage.getItem("role");
+                    if (userRole !== "administrator") {
+                        return redirect("/");
+                    }
+                    return null;
+                },
+            },
+            {
+                path: "data-transactions",
+                element: <AdminTransactionList />,
+                loader: () => {
+                    const userRole = localStorage.getItem("role");
+                    if (userRole !== "administrator") {
                         return redirect("/");
                     }
                     return null;
