@@ -1,0 +1,32 @@
+[
+    {
+        "name":"makanan",
+        "active":true,
+        "created_user":"Administrator",
+        "updated_user":"Administrator"
+    },
+    {
+        "name":"minuman",
+        "active":true,
+        "created_user":"Administrator",
+        "updated_user":"Administrator"
+    },
+    {
+        "name":"cemilan",
+        "active":true,
+        "created_user":"Administrator",
+        "updated_user":"Administrator"
+    },
+    {
+        "name":"buah",
+        "active":true,
+        "created_user":"Administrator",
+        "updated_user":"Administrator"
+    },
+    {
+        "name":"sayur",
+        "active":true,
+        "created_user":"Administrator",
+        "updated_user":"Administrator"
+    }
+]
